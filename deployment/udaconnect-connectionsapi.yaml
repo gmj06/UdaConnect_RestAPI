@@ -8,7 +8,7 @@ spec:
   ports:
     - name: "5002"
       port: 5002
-      targetPort: 5002
+      targetPort: 5000
       nodePort: 30002
   selector:
     service: udaconnect-connectionsapi
@@ -34,7 +34,6 @@ spec:
         - image: gmj06/udaconnect-connectionsapi:latest
           name: udaconnect-connectionsapi
           imagePullPolicy: Always
-          command: ["/bin/sh", "-c", "env && sleep 3600"]
           env:
             - name: DB_USERNAME
               valueFrom:
