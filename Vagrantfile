@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
 
-  config.vm.define "masterrest" do |master|
+  config.vm.define "master" do |master|
     master.vm.box = default_box
     master.vm.hostname = "master"
     master.vm.network 'private_network', ip: "192.168.0.201",  virtualbox__intnet: true
@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
       end
     master.vm.provider "virtualbox" do |v|
       v.memory = "3072"
-      v.name = "masterrest"
+      v.name = "master"
       end
     master.vm.provision "shell", inline: <<-SHELL
       sudo zypper refresh

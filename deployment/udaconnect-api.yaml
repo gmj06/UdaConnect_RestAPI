@@ -33,8 +33,7 @@ spec:
       containers:
         - image: udacity/nd064-udaconnect-api:latest
           name: udaconnect-api
-          imagePullPolicy: Always
-          command: ["/bin/sh", "-c", "env && sleep 3600"]
+          imagePullPolicy: "IfNotPresent"
           env:
             - name: DB_USERNAME
               valueFrom:

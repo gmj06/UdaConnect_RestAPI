@@ -33,7 +33,7 @@ spec:
       containers:
         - image: gmj06/udaconnect-connectionsapi:latest
           name: udaconnect-connectionsapi
-          imagePullPolicy: Always
+          imagePullPolicy: "IfNotPresent"
           env:
             - name: DB_USERNAME
               valueFrom:
