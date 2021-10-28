@@ -11,6 +11,10 @@ build:
     tryImportMissing: false
     useDockerCLI: false
   artifacts:
+    - image: gmj06/udaconnect-app
+      context: modules/frontend
+      docker:
+        dockerfile: Dockerfile
     - image: gmj06/udaconnect-connectionsapi
       context: modules/connectionsapi
       docker:
