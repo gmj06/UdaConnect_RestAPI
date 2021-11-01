@@ -10,7 +10,7 @@ spec:
     - protocol: TCP
       name: "5005"
       port: 5005
-      targetPort: 5000
+      targetPort: 5005
       nodePort: 30005
   selector:
     service: udaconnect-grpc
