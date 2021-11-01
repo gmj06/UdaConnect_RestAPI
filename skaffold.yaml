@@ -23,12 +23,12 @@ build:
       context: modules/locationsapi
       docker:
         dockerfile: Dockerfile
-    - image: gmj06/udaconnect-locationsapi-post
-      context: modules/locationsapi_post
-      docker:
-        dockerfile: Dockerfile
     - image: gmj06/udaconnect-locationsapi-kafka
       context: modules/locationsapi_post_db
+      docker:
+        dockerfile: Dockerfile
+    - image: gmj06/udaconnect-grpc
+      context: modules/locationsapi_post
       docker:
         dockerfile: Dockerfile
     - image: gmj06/udaconnect-connectionsapi
@@ -44,7 +44,8 @@ deploy:
       - deployment/postgres.yaml
       - deployment/udaconnect-api.yaml
       - deployment/udaconnect-app.yaml
-      - deployment/udaconnect-connectionsapi.yaml
-      - deployment/udaconnect-locationsapi.yaml
       - deployment/udaconnect-personsapi.yaml
+      - deployment/udaconnect-locationsapi.yaml
       - deployment/udaconnect-kafka.yaml
+      - deployment/udaconnect-grpc.yaml
+      - deployment/udaconnect-connectionsapi.yaml

@@ -6,6 +6,6 @@ data:
   DB_HOST: "postgres"
   DB_PORT: "5432"
   TOPIC_NAME: "locations-topic"
-  KAFKA_SERVER: "kafka-service:9092"
+  KAFKA_SERVER: "kafka-service.default.svc.cluster.local:9092"
 metadata:
   name: db-env

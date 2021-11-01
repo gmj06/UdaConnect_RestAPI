@@ -15,7 +15,7 @@ from kafka import KafkaProducer
 
 TOPIC_NAME= "locations-topic"
 
-KAFKA_SERVER= "kafka-service:9092"
+KAFKA_SERVER= "kafka-service.default.svc.cluster.local:9092"
 
 
 
@@ -35,7 +35,7 @@ class LocationServicer(location_pb2_grpc.LocationServiceServicer):
         return location_pb2.LocationMessage(**request_value)
 
 # Initialize Kafka Producer 
-producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER])
+producer = KafkaProducer(bootstrap_servers=KAFKA_SERVER)
 
 print('Kafka Producer Started...')
 
@@ -49,9 +49,12 @@ location_pb2_grpc.add_LocationServiceServicer_to_server(LocationServicer(), serv
 print("gRPC Server starting on port 5005...")
 server.add_insecure_port("[::]:5005")
 server.start()
-# Keep thread alive
-try:
-    while True:
-        time.sleep(86400)
-except KeyboardInterrupt:
-    server.stop(0)
+server.wait_for_termination()
+# # Keep thread alive
+# try:
+#     while True:
+#         time.sleep(86400)
+# except KeyboardInterrupt:
+#     server.stop(0)
+
+    

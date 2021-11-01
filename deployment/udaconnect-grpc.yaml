@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: udaconnect-grpc
+spec:
+  selector:
+    app: udaconnect-grpc
+  ports:
+    - protocol: TCP
+      name: "5005"
+      port: 5005
+      targetPort: 5000
+      nodePort: 30005
+  selector:
+    service: udaconnect-grpc
+  type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: udaconnect-grpc
+  name: udaconnect-grpc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: udaconnect-grpc
+  template:
+    metadata:
+      labels:
+        service: udaconnect-grpc
+    spec:
+      containers:
+        - image: gmj06/udaconnect-grpc:latest
+          name: udaconnect-grpc
+          imagePullPolicy: "IfNotPresent"
