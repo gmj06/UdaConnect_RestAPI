@@ -4,8 +4,6 @@ kind: Service
 metadata:
   name: udaconnect-grpc
 spec:
-  selector:
-    app: udaconnect-grpc
   ports:
     - protocol: TCP
       name: "5005"
