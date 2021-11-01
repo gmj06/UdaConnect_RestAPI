@@ -1,14 +1,12 @@
 FROM python:3.7-alpine
+RUN mkdir /backend
 
-WORKDIR .
+WORKDIR /backend
 
 RUN apk add --no-cache gcc musl-dev linux-headers geos libc-dev postgresql-dev
-COPY requirements.txt requirements.txt
+COPY requirements.txt /backend/requirements.txt
 RUN pip install -r requirements.txt
 
-EXPOSE 5002
+EXPOSE 5006
 
-COPY . .
-CMD ["flask", "run", "--host", "0.0.0.0"]
-
-
+ENTRYPOINT ["python","locations_kafka_db.py"]

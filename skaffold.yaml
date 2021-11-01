@@ -15,18 +15,27 @@ build:
       context: modules/frontend
       docker:
         dockerfile: Dockerfile
-    - image: gmj06/udaconnect-connectionsapi
-      context: modules/connectionsapi
+    - image: gmj06/udaconnect-personsapi
+      context: modules/personsapi
       docker:
         dockerfile: Dockerfile
     - image: gmj06/udaconnect-locationsapi
       context: modules/locationsapi
       docker:
         dockerfile: Dockerfile
-    - image: gmj06/udaconnect-personsapi
-      context: modules/personsapi
+    - image: gmj06/udaconnect-locationsapi-post
+      context: modules/locationsapi_post
       docker:
         dockerfile: Dockerfile
+    - image: gmj06/udaconnect-locationsapi-kafka
+      context: modules/locationsapi_post_db
+      docker:
+        dockerfile: Dockerfile
+    - image: gmj06/udaconnect-connectionsapi
+      context: modules/connectionsapi
+      docker:
+        dockerfile: Dockerfile
+
 deploy:
   kubectl:
     manifests:
@@ -38,3 +47,4 @@ deploy:
       - deployment/udaconnect-connectionsapi.yaml
       - deployment/udaconnect-locationsapi.yaml
       - deployment/udaconnect-personsapi.yaml
+      - deployment/udaconnect-kafka.yaml
